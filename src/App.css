@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two&display=swap');
+
 body {
-  -webkit-background-size: cover;
+  /* -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: whitesmoke;
+  background-color: whitesmoke; */
   text-align: center;
+  background: url(../src/images/apples.jpg) center/cover fixed;
+  position: relative;
 }
 
 ul {
@@ -43,4 +47,38 @@ li {
 
 li b {
   width: 100%;
+}
+
+.title {
+  color: #fff;
+  text-align: center;
+  background: #007bff;
+  border-radius: 3px;
+  width: 100%;
+  font-family: 'Lobster Two', cursive;
+  margin: 3rem 0 0.5rem 0;
+}
+
+.top {
+  width: 470px;
+  position: relative;
+  left: 15px
+}
+
+.hide {
+  display: none;
+}
+
+.bordered {
+  border: 1px lightgrey solid;
+  background: #fff;
+  padding: 4px 90px;
+  border-radius: 5px;
+  float: left;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.error {
+  border: 6px solid red;
 }
