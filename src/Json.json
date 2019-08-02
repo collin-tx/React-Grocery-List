@@ -1,0 +1,26 @@
+{
+	"store": "Gelsons",
+	"location": "Los Angeles",
+	"groceries": [
+		{
+			"name": "banana",
+			"price": 1,
+			"id": 1
+		},
+		{
+			"name": "Apple",
+			"price": 2,
+			"id": 2
+		},
+		{
+			"name": "Yogurt",
+			"price": 2,
+			"id": 3
+		},
+		{
+			"name": "Kale",
+			"price": 1,
+			"id": 4
+		}
+	]
+}
