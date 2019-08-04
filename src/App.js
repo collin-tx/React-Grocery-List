@@ -20,6 +20,7 @@ export default class App extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+		document.getElementById('total').classList.add('hide');
 		if (this.state.value.length > 0){
 		this.setState({
 			groceries: [...this.state.groceries, 
@@ -44,6 +45,7 @@ export default class App extends Component {
 
 	removeItem = (id) => {
 		const newList = this.state.groceries.filter(item => item.id !== id);
+		document.getElementById('total').classList.add('hide');
 		this.setState({
 			groceries: newList
 		})
@@ -68,7 +70,7 @@ export default class App extends Component {
 		})
 
 		let totalP = document.getElementById('total');
-		totalP.className = "bordered";
+		totalP.classList.remove('hide');
 	}
 
 	render() {
@@ -79,7 +81,7 @@ export default class App extends Component {
 		return (
 			<main>
 				<div className="container-fluid">
-					<div className="row">
+					<div className="row" id="title-text">
 						<h1 className="title">{this.state.websiteName}</h1>
 					</div>
 					<div className="row">
@@ -95,7 +97,7 @@ export default class App extends Component {
 						</ul>
 					</div>
 					<button className="btn btn-secondary float-right" onClick={this.getTotal}>Get My Total</button>
-					<p id="total" className="hide">Grand total: ${this.state.grandTotal}</p>
+					<p id="total" className="hide bordered">Grand total: ${this.state.grandTotal}</p>
 				</div>
 			</main>
 		);

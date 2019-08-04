@@ -57,6 +57,8 @@ li b {
   width: 100%;
   font-family: 'Lobster Two', cursive;
   margin: 3rem 0 0.5rem 0;
+  font-size: 3rem;
+  line-height: 1.6;
 }
 
 .top {
@@ -77,8 +79,4 @@ li b {
   float: left;
   font-size: 1.2em;
   text-align: center;
-}
-
-.error {
-  border: 6px solid red;
 }
