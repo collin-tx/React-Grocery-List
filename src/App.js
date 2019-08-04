@@ -27,13 +27,19 @@ export default class App extends Component {
 				{
 				name: this.state.value,
 				price: 3,
-				id: uuid.v4()
+				id: uuid.v4(),
+				quantity: 1,
+				total: 3
 				}
 			],
 			value: ''
 		})
 	} else {
-		alert("You can't add nothing to your grocery list!")
+		const itemBorder = document.getElementById('userInput');
+		itemBorder.classList.add('warning');
+		setTimeout(function(){
+			itemBorder.classList.remove('warning');
+		}, 1500);
 	}
 	}
 
@@ -48,7 +54,7 @@ export default class App extends Component {
 		document.getElementById('total').classList.add('hide');
 		this.setState({
 			groceries: newList
-		})
+		});
 	}
 
 	editItem = (index, newItem) => {
@@ -60,22 +66,62 @@ export default class App extends Component {
 	}
 
 	getTotal = () => {
-		let prices = [];
+		let totals = [];
 		for (let item in this.state.groceries){
-			prices.push(this.state.groceries[item].price);
+			totals.push(this.state.groceries[item].total);
 		}
-		let total = prices.reduce((a, b) => a + b);
+		let sum = totals.reduce((a, b) => a + b);
 		this.setState({
-			grandTotal: total
+			grandTotal: sum
 		})
 
 		let totalP = document.getElementById('total');
 		totalP.classList.remove('hide');
 	}
 
+	handleIncrement = (e, index) => {
+		let newGrocery = this.state.groceries[index];
+		newGrocery.quantity++;
+		let newQuantity = newGrocery.quantity;
+		const originalPrice = newGrocery.price;
+		let newPrice = originalPrice * newQuantity;
+		newGrocery.total = newPrice;
+		let newArr = this.state.groceries;
+		newArr[index] = newGrocery;
+		this.setState({
+			groceries: newArr
+		});
+		this.getTotal();
+		// document.getElementById('total').classList.add('hide');
+	}
+
+	handleDecrement = (e, index) => {
+		let newGrocery = this.state.groceries[index];
+		if (newGrocery.quantity > 1){
+		newGrocery.quantity--;
+		let newQuantity = newGrocery.quantity;
+		const originalPrice = newGrocery.price;
+		let newPrice = originalPrice * newQuantity;
+		newGrocery.total = newPrice;
+		let newArr = this.state.groceries;
+		newArr[index] = newGrocery;
+		this.setState({
+			groceries: newArr
+		});
+		this.getTotal();
+	} else {
+		const itemBorder = e.target.parentElement;
+		itemBorder.classList.add('warning');
+		setTimeout(function(){
+			itemBorder.classList.remove('warning');
+		}, 1500);
+	}
+	}	
+
 	render() {
 		let allGroceries = this.state.groceries.map((item, index) => {
-			return <ListItem item={item} id={item.id} index={index} removeItem={this.removeItem} editItem={this.editItem} />
+			return <ListItem item={item} id={item.id} index={index} removeItem={this.removeItem} 
+			editItem={this.editItem} handleIncrement={this.handleIncrement} handleDecrement={this.handleDecrement} />
 		})
 
 		return (
@@ -88,7 +134,7 @@ export default class App extends Component {
 						<form onSubmit={this.handleSubmit}>
 							<input type="text" className="form-control top" placeholder="Add an item..." 
 							value={this.state.value} onChange={this.handleChange} id="userInput" />
-							<button className="btn btn-primary btn-block top">+</button>
+							<button className="btn btn-primary btn-block top mb-5">+</button>
 						</form>
 					</div>
 					<div>

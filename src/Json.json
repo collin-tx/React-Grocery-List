@@ -5,22 +5,30 @@
 		{
 			"name": "banana",
 			"price": 1,
-			"id": 1
+			"id": 1,
+			"quantity": 1,
+			"total": 1
 		},
 		{
 			"name": "Apple",
 			"price": 2,
-			"id": 2
+			"id": 2,
+			"quantity": 1,
+			"total": 2
 		},
 		{
 			"name": "Yogurt",
 			"price": 2,
-			"id": 3
+			"id": 3,
+			"quantity": 1,
+			"total": 2
 		},
 		{
 			"name": "Kale",
 			"price": 1,
-			"id": 4
+			"id": 4,
+			"quantity": 1,
+			"total": 1
 		}
 	]
 }

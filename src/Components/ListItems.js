@@ -4,7 +4,8 @@ export default class ListItem extends Component {
 
 state = {
 	editing: false,
-	currentValue: ''
+	currentValue: '',
+	price: this.props.item.price
 }
 
 edit = () => {
@@ -25,19 +26,26 @@ handleChange = (e) => {
 		currentValue: e.target.value
 	})
 }
+
+
+
 	render() {
 		return (
+			<div>
 			<li className="list-group-item text-left">
-				<b>{this.props.item.name} | ${this.props.item.price}</b>
+				<b>{this.props.item.name} | qty: {this.props.item.quantity} | ${this.props.item.total}</b>
 				{this.state.editing ? (
 					<input type="text" onChange={this.handleChange} value={this.currentValue} />
 				) : ('')
 				}
+				<button className="btn btn-warning m-1" id="decrement" onClick={(e) => this.props.handleDecrement(e, this.props.index)}>-</button>
+				<button className="btn btn-warning m-1" id="increment" onClick={(e) => this.props.handleIncrement(e, this.props.index)}>+</button>
 				<button className="btn btn-success m-1" id="edit" onClick={this.edit}>{this.state.editing ? 'Save' : 'Edit'}</button>
 				<button className="btn btn-danger" id="remove" onClick={() => this.props.removeItem(this.props.id)}>
 					Remove
 					</button>
 			</li>
+			</div>
 		);
 	}
 }
